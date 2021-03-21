@@ -3,6 +3,7 @@ class TictactoeGameEngine:
         #self.board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         self.board = list('.' * 9)
         self.current_turn = 'X'
+        self.score = [0, 0] # ['O', 'X']
 
     def get(self, row, col):
         row -= 1
@@ -29,19 +30,37 @@ class TictactoeGameEngine:
         # -
         for i in range(1, 3+1):
             if self.get(i, 1) == self.get(i, 2) == self.get(i, 3) != '.':
+                if self.get(i, 1) == 'O':
+                    self.score[0] += 1
+                else:
+                    self.score[1] += 1
                 return self.get(i, 1)
         # |
         for i in range(1, 3+1):
             if self.get(1, i) == self.get(2, i) == self.get(3, i) != '.':
+                if self.get(1, i) == 'O':
+                    self.score[0] += 1
+                else:
+                    self.score[1] += 1
                 return self.get(1, i)
         # /
         if self.get(1, 3) == self.get(2, 2) == self.get(3, 1) != '.':
+            if self.get(1, 3) == 'O':
+                self.score[0] += 1
+            else:
+                self.score[1] += 1
             return self.get(2, 2)  # 누가 이겼는지 알려줌
         # \
         if self.get(1, 1) == self.get(2, 2) == self.get(3, 3) != '.':
+            if self.get(1, 1) == 'O':
+                self.score[0] += 1
+            else:
+                self.score[1] += 1
             return self.get(2, 2)
 
         if not '.' in self.board:
+            self.score[0] += 1
+            self.score[1] += 1
             return 'd' #무승부는 d 리턴 draw : 무승부
 
     def __str__(self):

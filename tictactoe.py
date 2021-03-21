@@ -50,8 +50,8 @@ class TictactoeGUI:
 
         #{'O' : PhotoImage 객체, 'X': PhotoImage 객체 } 딕셔너리
         self.images = {}
-        self.images['O'] = tkinter.PhotoImage(file = 'O.gif')
-        self.images['X'] = tkinter.PhotoImage(file = 'X.gif')
+        self.images['O'] = tkinter.PhotoImage(file = '짜장면.png')
+        self.images['X'] = tkinter.PhotoImage(file = '짬뽕.png')
 
         self.canvas.bind('<Button-1>', self.click_handler) #bind는 연결, <button-1>로 연결
 
@@ -62,7 +62,7 @@ class TictactoeGUI:
         #     row = 1
         # elif 100 <= x < 200:
         #     row = 2
-        # elif 200 <= x < 300:
+        # elif 200 <= x < 300:  
         #     row = 3
 
 
@@ -81,24 +81,27 @@ class TictactoeGUI:
 
         #결과보여주기
         if winner == 'O':
-            #print('O 이김')
-            messagebox.showinfo('Game Over', 'O 이김')
+            messagebox.showinfo('Game Over', '짜장면 승')
             self.root.quit() #root는 창
+
+
         elif winner == 'X':
-            print('X 이김')
-            messagebox.showinfo('Game Over', 'X 이김')
+            messagebox.showinfo('Game Over', '짬뽕 승')
             self.root.quit()
+
+
         elif winner == 'd':
-            print('무승부')
             messagebox.showinfo('Game Over', '무승부')
             self.root.quit()
 
     def draw_board(self):
+
         x = 0
         y = 0
         for i, v in enumerate(self.game_engine.board):
             if v == 'O':
                 self.canvas.create_image(x, y, anchor='nw', image=self.images['O'])
+
             elif v == 'X':
                 self.canvas.create_image(x, y, anchor='nw', image = self.images['X'])
 
@@ -114,6 +117,7 @@ class TictactoeGUI:
 
 
 if __name__ == '__main__':
-        #ttt = Tictactoe()
-        ttt = TictactoeGUI()
-        ttt.play()
+
+    #ttt = Tictactoe()
+    ttt = TictactoeGUI()
+    ttt.play()
